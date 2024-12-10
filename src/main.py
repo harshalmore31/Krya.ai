@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 # Streamlit UI Design
-st.set_page_config(page_icon="assests\krya_logo.png",page_title="Krya.ai Automation Console", layout="wide")
+st.set_page_config(page_icon="assests\krya_logo.png",page_title="Krya.ai Automation Console", layout="wide",initial_sidebar_state="expanded")
 
 # Custom CSS for modern look and adjustments
 with open(r"src\UI\style.css") as f:
@@ -13,8 +13,8 @@ with open(r"src\UI\style.css") as f:
 # Sidebar with improved styling
 with st.sidebar:
     # Logo and Project Name
-    st.image("assests\krya_logo.svg", width=150)
-    st.markdown("<h2>Krya AI</h2>", unsafe_allow_html=True)
+    st.image("assests\krya_logo.svg", width=50)
+    st.markdown("<h1>Krya AI</h1>", unsafe_allow_html=True)
 
     google_api_key = st.text_input("Enter your Google API Key", placeholder="e.g., Ax********", type="password")
     save_button = st.button("Save")

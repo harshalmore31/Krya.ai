@@ -1,2 +1,3 @@
 src/backend
 .env
+src/functions/__pycache__
