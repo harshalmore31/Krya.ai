@@ -20,7 +20,7 @@ Insert gif or link to demo
 ### Install Dependencies:
 
 ```bash
-  pip install pyautogui google.generativeai pyperclip
+  pip install pyautogui google.generativeai pyperclip streamlit
 ```
 
 ### Setup API keys { for now we, are limited to GEMINI and LLAMA API (NIM API) }
@@ -41,13 +41,14 @@ Insert gif or link to demo
   cd Krya.ai
 ```
 ### Running the Project
-1. Open the project in your preferred code editor, e.g., VS Code.
+1. Navigate to directory you clone this code
 2. To test Krya.ai in action:
 ```bash
-python src/main.py
+streamlit run src/main.py
 ```
 3. Enter your saved API keys when prompted.
 4. Follow the interactive flow to see the orchestration and automation in action.
+
 ## Key Features
 - 🤖 Multi-LLM Orchestration: Streamlines coordination between GPT and LLaMA.
 - 🔄 Automated Prompt Refinement: Uses GPT for prompt optimization and PyAutoGUI for GUI automation.
@@ -86,7 +87,7 @@ import pyautogui
 import time
 
 # Open the text editor (this may vary based on the system)
-pyautogui.hotkey('win', 'r')  # Open the Run dialog
+pyautogui.hotkey('win')  # Open the Run dialog
 pyautogui.typewrite('notepad\n', interval=0.1)
 time.sleep(1)  # Wait for the editor to open
 
