@@ -1,7 +1,8 @@
 import streamlit as st
-from functions.processes import process_prompt,copy_to_clipboard
+from functions.processes import process_prompt,copy_to_clipboard, check_api
 from dotenv import load_dotenv
 import os
+
 
 # Streamlit UI Design
 st.set_page_config(page_icon="assests\krya_logo.png",page_title="Krya.ai Automation Console", layout="wide",initial_sidebar_state="expanded")
@@ -18,16 +19,15 @@ with st.sidebar:
 
     google_api_key = st.text_input("Enter your Google API Key", placeholder="e.g., Ax********", type="password")
     save_button = st.button("Save")
-    load_dotenv()
-    google_api_key_env = os.getenv("GOOGLE_API_KEY")
-    if google_api_key_env:
-        st.info("API key already loaded.")
+    if check_api()==True:
+        st.success("API key loaded")
     else:
-        st.warning("Please enter the API key.")
+        st.error("Enter the API key")
     if save_button and google_api_key:
         with open(".env", "w") as f:
             f.write(f"GOOGLE_API_KEY={google_api_key}")
         st.success("Google API Key saved")
+        load_dotenv()    
 
     st.markdown("### Sample Prompts-")
     st.markdown("<div class='sample-prompts'>", unsafe_allow_html=True)
@@ -63,22 +63,23 @@ user_input = st.text_input("Enter your command", placeholder="e.g., Open Notepad
 execute_button = st.button("Execute")
 if execute_button:
     load_dotenv()
-    google_api_key = os.getenv("GOOGLE_API_KEY")
-    if not google_api_key:
-        st.error("No API_KEY found. Please enter the API key in the sidebar and save.")
+    if check_api()==True:
+        if execute_button and user_input:
+            with st.spinner("Processing your request..."):
+                code, execution_status = process_prompt(user_input)
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.subheader("Generated Code")
+                    st.code(code, language="python")
+                    copy_to_clipboard(code, "copy_code")
+                with col2:
+                    st.subheader("Execution Status")
+                    st.text_area("", execution_status, height=400, key="execution_status")
+                    copy_to_clipboard(execution_status, "copy_status")
+    else:
+        st.error("API not found, Enter the API in sidebar")
         st.stop()
+
 
 st.markdown("</div>", unsafe_allow_html=True)
 
-if execute_button and user_input:
-    with st.spinner("Processing your request..."):
-        code, execution_status = process_prompt(user_input)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.subheader("Generated Code")
-            st.code(code, language="python")
-            copy_to_clipboard(code, "copy_code")
-        with col2:
-            st.subheader("Execution Status")
-            st.text_area("", execution_status, height=400, key="execution_status")
-            copy_to_clipboard(execution_status, "copy_status")

@@ -15,7 +15,7 @@
     - Seprated the system_prompt and the CSS file, make it look like more clean and structure
     - Linked the necessary file and also 
 - Logo Issue fixed, do the naming properly it is getting conflit with the streamlit library
-
+- Refactor API key handling, and fix the refresh and auto load_env()
 
 ### Issues
 

@@ -2,9 +2,9 @@ import os
 import google.generativeai as genai
 from functions.config import configure_model
 
-model = configure_model()
 
 def generate_code(prompt):
+    model = configure_model()
     chat_session = model.start_chat(
         history=[
             {

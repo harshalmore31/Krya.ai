@@ -3,6 +3,8 @@ import pyperclip
 import streamlit as st
 from functions.gen import generate_code
 from functions.exec import run_script
+import os
+from dotenv import load_dotenv
 
 def process_prompt(prompt):
     generated_code = generate_code(prompt)
@@ -18,3 +20,8 @@ def copy_to_clipboard(text, button_key):
     if st.button("📋 Copy", key=button_key):
         pyperclip.copy(text)
         st.success("Copied to clipboard!")
+
+def check_api():
+    # print(bool(os.getenv("GOOGLE_API_KEY")))
+    load_dotenv()
+    return bool(os.getenv("GOOGLE_API_KEY"))
