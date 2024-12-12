@@ -6,8 +6,7 @@ Krya.ai is an advanced orchestration system designed to enable automated interac
 
 ## Demo
 
-Insert gif or link to demo
-[demo](https://github.com/devdattatalele/Krya.ai/blob/bb1df4f3982b23e6f2f91469b8472d1e60f2c267/assests/Screencast%20from%202024-12-12%2019-27-37.webm)
+(https://github.com/devdattatalele/Krya.ai/blob/bb1df4f3982b23e6f2f91469b8472d1e60f2c267/assests/Screencast%20from%202024-12-12%2019-27-37.webm)
 
 
 ## Installation
